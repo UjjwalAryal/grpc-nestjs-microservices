@@ -37,7 +37,7 @@ export interface User {
 
 export const USERS_PACKAGE_NAME = "users";
 
-export interface GRPCServiceUsersClient {
+export interface UsersServiceClient {
   createUser(request: CreateUserDto): Observable<User>;
 
   findAllUsers(request: Empty): Observable<Users>;
@@ -51,7 +51,7 @@ export interface GRPCServiceUsersClient {
   queryUsers(request: Observable<PaginationDto>): Observable<Users>;
 }
 
-export interface GRPCServiceUsersController {
+export interface UsersServiceController {
   createUser(request: CreateUserDto): Promise<User> | Observable<User> | User;
 
   findAllUsers(request: Empty): Promise<Users> | Observable<Users> | Users;
@@ -65,19 +65,19 @@ export interface GRPCServiceUsersController {
   queryUsers(request: Observable<PaginationDto>): Observable<Users>;
 }
 
-export function GRPCServiceUsersControllerMethods() {
+export function UsersServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = ["createUser", "findAllUsers", "findOneUser", "updateUser", "removeUser"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("GRPCServiceUsers", method)(constructor.prototype[method], method, descriptor);
+      GrpcMethod("UsersService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = ["queryUsers"];
     for (const method of grpcStreamMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("GRPCServiceUsers", method)(constructor.prototype[method], method, descriptor);
+      GrpcStreamMethod("UsersService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const G_RP_CSERVICE_USERS_SERVICE_NAME = "GRPCServiceUsers";
+export const USERS_SERVICE_NAME = "UsersService";

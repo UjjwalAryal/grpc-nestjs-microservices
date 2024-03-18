@@ -28,7 +28,7 @@ export interface Order {
 
 export const ORDERS_PACKAGE_NAME = "orders";
 
-export interface GRPCServiceOrdersClient {
+export interface OrdersServiceClient {
   createOrder(request: CreateOrderDto): Observable<Order>;
 
   findAllOrders(request: Empty): Observable<Orders>;
@@ -42,7 +42,7 @@ export interface GRPCServiceOrdersClient {
   queryOrders(request: Observable<PaginationDto>): Observable<Orders>;
 }
 
-export interface GRPCServiceOrdersController {
+export interface OrdersServiceController {
   createOrder(request: CreateOrderDto): Promise<Order> | Observable<Order> | Order;
 
   findAllOrders(request: Empty): Promise<Orders> | Observable<Orders> | Orders;
@@ -56,19 +56,19 @@ export interface GRPCServiceOrdersController {
   queryOrders(request: Observable<PaginationDto>): Observable<Orders>;
 }
 
-export function GRPCServiceOrdersControllerMethods() {
+export function OrdersServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = ["createOrder", "findAllOrders", "findOneOrder", "updateOrder", "removeOrder"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("GRPCServiceOrders", method)(constructor.prototype[method], method, descriptor);
+      GrpcMethod("OrdersService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = ["queryOrders"];
     for (const method of grpcStreamMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("GRPCServiceOrders", method)(constructor.prototype[method], method, descriptor);
+      GrpcStreamMethod("OrdersService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const G_RP_CSERVICE_ORDERS_SERVICE_NAME = "GRPCServiceOrders";
+export const ORDERS_SERVICE_NAME = "OrdersService";
