@@ -27,7 +27,7 @@ number in the proto file represents the order of them
 
 
 
-protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./ --ts_proto_opt=nestJs=true ./libs/common/src/proto/orders.proto
+protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./ --ts_proto_opt=nestJs=true ./libs/common/src/proto/users.proto
 
     - to generate users.ts file
     - interface for users, dtos, methods that controllers will implement

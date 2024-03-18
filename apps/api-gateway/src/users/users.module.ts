@@ -16,7 +16,7 @@ import { USERS_PACKAGE_NAME } from '@app/common';
           package: USERS_PACKAGE_NAME,
           protoPath: join(
             __dirname,
-            '../../../libs/common/common/src/proto/users.proto',
+            '../../../libs/common/src/proto/users.proto',
           ),
         },
       },

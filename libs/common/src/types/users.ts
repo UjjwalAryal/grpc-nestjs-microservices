@@ -11,6 +11,8 @@ export interface PaginationDto {
 
 export interface UpdateUserDto {
   id: string;
+  name: string;
+  age: number;
 }
 
 export interface FindOneUserDto {
