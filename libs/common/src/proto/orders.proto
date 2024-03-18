@@ -1,19 +1,16 @@
 syntax = "proto3";
 
+import "base.proto";
+
 package orders;
 
 service OrdersService {
   rpc CreateOrder (CreateOrderDto) returns (Order) {}
-  rpc FindAllOrders (Empty) returns (Orders) {}
+  rpc FindAllOrders (base.Empty) returns (Orders) {}
   rpc FindOneOrder (FindOneOrderDto) returns (Order) {}
   rpc UpdateOrder (UpdateOrderDto) returns (Order) {}
   rpc RemoveOrder (FindOneOrderDto) returns (Order) {}
-  rpc QueryOrders (stream PaginationDto) returns (stream Orders) {}
-}
-
-message PaginationDto {
-  int32 page = 1;
-  int32 skip = 2;
+  rpc QueryOrders (stream base.PaginationDto) returns (stream Orders) {}
 }
 
 message UpdateOrderDto {
@@ -25,7 +22,6 @@ message FindOneOrderDto {
   string id = 1;
 }
 
-message Empty {};
 
 message Orders {
   repeated Order orders = 1;

@@ -1,13 +1,9 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
+import { Empty, PaginationDto } from "./base";
 
 export const protobufPackage = "users";
-
-export interface PaginationDto {
-  page: number;
-  skip: number;
-}
 
 export interface UpdateUserDto {
   id: string;
@@ -17,9 +13,6 @@ export interface UpdateUserDto {
 
 export interface FindOneUserDto {
   id: string;
-}
-
-export interface Empty {
 }
 
 export interface Users {

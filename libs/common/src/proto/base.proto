@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package base;
+
+message Empty {};
+
+message PaginationDto {
+  int32 page = 1;
+  int32 skip = 2;
+}

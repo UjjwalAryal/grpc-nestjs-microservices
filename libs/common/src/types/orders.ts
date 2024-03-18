@@ -1,7 +1,9 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { Empty, PaginationDto } from "./users";
+import { Empty, PaginationDto } from "./base";
+
+export const protobufPackage = "orders";
 
 export interface UpdateOrderDto {
   id: string;
