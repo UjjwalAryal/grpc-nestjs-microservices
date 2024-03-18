@@ -1,16 +1,14 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { Empty, PaginationDto } from "./base";
-
-export const protobufPackage = "orders";
-
-export interface UpdateOrderDto {
-  id: string;
-}
+import { Empty } from "./base";
 
 export interface FindOneOrderDto {
   id: string;
+}
+
+export interface FindOneOrderByUserIdDto {
+  userId: string;
 }
 
 export interface Orders {
@@ -19,13 +17,15 @@ export interface Orders {
 
 export interface CreateOrderDto {
   name: string;
-  age: number;
+  origin: string;
+  userId: number;
 }
 
 export interface Order {
   id: string;
   name: string;
-  age: number;
+  origin: string;
+  userId: string;
 }
 
 export const ORDERS_PACKAGE_NAME = "orders";
@@ -37,11 +37,7 @@ export interface OrdersServiceClient {
 
   findOneOrder(request: FindOneOrderDto): Observable<Order>;
 
-  updateOrder(request: UpdateOrderDto): Observable<Order>;
-
-  removeOrder(request: FindOneOrderDto): Observable<Order>;
-
-  queryOrders(request: Observable<PaginationDto>): Observable<Orders>;
+  findOneOrderByUserId(request: FindOneOrderByUserIdDto): Observable<Order>;
 }
 
 export interface OrdersServiceController {
@@ -51,21 +47,17 @@ export interface OrdersServiceController {
 
   findOneOrder(request: FindOneOrderDto): Promise<Order> | Observable<Order> | Order;
 
-  updateOrder(request: UpdateOrderDto): Promise<Order> | Observable<Order> | Order;
-
-  removeOrder(request: FindOneOrderDto): Promise<Order> | Observable<Order> | Order;
-
-  queryOrders(request: Observable<PaginationDto>): Observable<Orders>;
+  findOneOrderByUserId(request: FindOneOrderByUserIdDto): Promise<Order> | Observable<Order> | Order;
 }
 
 export function OrdersServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createOrder", "findAllOrders", "findOneOrder", "updateOrder", "removeOrder"];
+    const grpcMethods: string[] = ["createOrder", "findAllOrders", "findOneOrder", "findOneOrderByUserId"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("OrdersService", method)(constructor.prototype[method], method, descriptor);
     }
-    const grpcStreamMethods: string[] = ["queryOrders"];
+    const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcStreamMethod("OrdersService", method)(constructor.prototype[method], method, descriptor);

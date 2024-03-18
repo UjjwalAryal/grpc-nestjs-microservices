@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-export const protobufPackage = "base";
-
 export interface Empty {
 }
 

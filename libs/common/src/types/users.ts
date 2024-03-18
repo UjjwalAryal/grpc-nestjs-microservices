@@ -3,8 +3,6 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 import { Empty, PaginationDto } from "./base";
 
-export const protobufPackage = "users";
-
 export interface UpdateUserDto {
   id: string;
   name: string;
