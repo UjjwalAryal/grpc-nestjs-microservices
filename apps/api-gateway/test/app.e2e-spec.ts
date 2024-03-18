@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { GrpcGatewayModule } from './../src/grpc-gateway.module';
+import { GrpcGatewayModule } from './../src/api-gateway.module';
 
 describe('GrpcGatewayController (e2e)', () => {
   let app: INestApplication;
