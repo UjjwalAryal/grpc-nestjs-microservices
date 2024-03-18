@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { GrpcServiceUsersModule } from './grpc-service-users.module';
 import { join } from 'path';
-import { GRPC_SERVICE_USERS_PACKAGE } from '@app/common';
+import { USERS_PACKAGE_NAME } from '@app/common/types';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -10,7 +10,7 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        package: GRPC_SERVICE_USERS_PACKAGE,
+        package: USERS_PACKAGE_NAME,
         protoPath: join(__dirname, '../../libs/common/src/proto/users.proto'),
       },
     },
