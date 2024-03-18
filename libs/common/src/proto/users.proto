@@ -18,7 +18,8 @@ message PaginationDto {
 
 message UpdateUserDto {
   string id = 1;
-
+  string name = 2;
+  int32 age = 3;
 }
 
 message FindOneUserDto {
@@ -32,8 +33,8 @@ message Users {
 }
 
 message CreateUserDto {
-  string name = 2;
-  int32 age = 3;
+  string name = 1;
+  int32 age = 2;
 }
 
 message User {

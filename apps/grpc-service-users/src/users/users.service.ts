@@ -14,8 +14,26 @@ export class UsersService implements OnModuleInit {
   private readonly users: User[] = [];
 
   onModuleInit() {
-    this.create({ name: 'Ujjwal', age: 25 });
-    this.create({ name: 'Light', age: 24 });
+    this.users.push({
+      id: '05169c98-c4ca-48f0-909d-cd55fe0b548a',
+      name: 'Tao',
+      age: 25,
+    });
+    this.users.push({
+      id: '84b6423a-5be2-4e4a-885a-28ba505521b6',
+      name: 'Dostoevsky',
+      age: 24,
+    });
+    this.users.push({
+      id: 'vf2rt435-5be2-4e4a-885a-28ba505mnas3',
+      name: 'Gibran',
+      age: 56,
+    });
+    this.users.push({
+      id: '56b6423a-2345-4e4a-885a-28ba505opvf5',
+      name: 'Sankar',
+      age: 24,
+    });
   }
 
   create(createUserDto: CreateUserDto) {

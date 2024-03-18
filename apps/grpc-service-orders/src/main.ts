@@ -13,7 +13,7 @@ async function bootstrap() {
         package: USERS_PACKAGE_NAME,
         protoPath: join(
           __dirname,
-          '../../../libs/common/common/src/proto/orders.proto',
+          '../../../libs/common/src/proto/orders.proto',
         ),
       },
     },
