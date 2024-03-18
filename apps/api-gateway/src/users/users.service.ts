@@ -1,24 +1,33 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import {
   CreateUserDto,
+  ORDERS_SERVICE_NAME,
+  OrdersServiceClient,
   PaginationDto,
   USERS_SERVICE_NAME,
   UpdateUserDto,
   UsersServiceClient,
 } from '@app/common';
-import { GRPC_SERVICE_USERS } from './constant';
+import { GRPC_SERVICE_ORDERS, GRPC_SERVICE_USERS } from './constant';
 import { ClientGrpc } from '@nestjs/microservices';
 import { ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
   private usersService: UsersServiceClient;
+  private ordersService: OrdersServiceClient;
 
-  constructor(@Inject(GRPC_SERVICE_USERS) private client: ClientGrpc) {}
+  constructor(
+    @Inject(GRPC_SERVICE_USERS) private clientUsers: ClientGrpc,
+    @Inject(GRPC_SERVICE_ORDERS) private clientOrders: ClientGrpc,
+  ) {}
 
   onModuleInit() {
     this.usersService =
-      this.client.getService<UsersServiceClient>(USERS_SERVICE_NAME);
+      this.clientUsers.getService<UsersServiceClient>(USERS_SERVICE_NAME);
+
+    this.ordersService =
+      this.clientOrders.getService<OrdersServiceClient>(ORDERS_SERVICE_NAME);
   }
 
   create(createUserDto: CreateUserDto) {
@@ -30,7 +39,8 @@ export class UsersService implements OnModuleInit {
   }
 
   findOne(id: string) {
-    return this.findOne(id);
+    // this.ordersService.findOneOrderByUserId({ userId: id });
+    return this.usersService.findOneUser({ id });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
