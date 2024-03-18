@@ -11,7 +11,10 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         package: USERS_PACKAGE_NAME,
-        protoPath: join(__dirname, '../../libs/common/src/proto/users.proto'),
+        protoPath: join(
+          __dirname,
+          '../../libs/common/common/src/proto/users.proto',
+        ),
       },
     },
   );
