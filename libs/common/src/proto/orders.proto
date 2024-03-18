@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package orders;
+
+service GRPCServiceOrders {
+  rpc CreateOrder (CreateOrderDto) returns (Order) {}
+  rpc FindAllOrders (Empty) returns (Orders) {}
+  rpc FindOneOrder (FindOneOrderDto) returns (Order) {}
+  rpc UpdateOrder (UpdateOrderDto) returns (Order) {}
+  rpc RemoveOrder (FindOneOrderDto) returns (Order) {}
+  rpc QueryOrders (stream PaginationDto) returns (stream Orders) {}
+}
+
+message PaginationDto {
+  int32 page = 1;
+  int32 skip = 2;
+}
+
+message UpdateOrderDto {
+  string id = 1;
+
+}
+
+message FindOneOrderDto {
+  string id = 1;
+}
+
+message Empty {};
+
+message Orders {
+  repeated Order orders = 1;
+}
+
+message CreateOrderDto {
+  string name = 2;
+  int32 age = 3;
+}
+
+message Order {
+  string id = 1;
+  string name = 2;
+  int32 age = 4;
+}
