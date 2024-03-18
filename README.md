@@ -11,23 +11,21 @@ In this project, we have 3 services running,
     - grpc-service-users
 
 
+### Quickstart
 
-nest g resource users
-    
+- Clone the repo and do `npm install`.
 
-ts-proto
-    - allow generate Typescript code from our porotobuf definitions;
-    - helps save a lot of time
+- Install `protoc` to your system. [guide](https://grpc.io/docs/protoc-installation/)
 
-@grpc/grpc-js
+- Run the 
+### Commands
 
-@grpc/proto-loader
+- To generate `.ts` files under `libs/common/src/types/` for each of the `.proto files` inside `libs/common/src/proto/`. Here, `ts-proto` package is used.
+    ```
+    protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./libs/common/src/types --ts_proto_opt=nestJs=true --proto_path=./libs/common/src/proto/ ./libs/common/src/proto/*.proto
+    ```
 
-number in the proto file represents the order of them
-
-
-
-protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./ --ts_proto_opt=nestJs=true ./libs/common/src/proto/users.proto
-
-    - to generate users.ts file
-    - interface for users, dtos, methods that controllers will implement
+- To generate resources files for an entity
+    ```
+    nest g resource users
+    ```
