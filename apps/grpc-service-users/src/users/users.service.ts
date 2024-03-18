@@ -31,7 +31,7 @@ export class UsersService implements OnModuleInit {
     });
     this.users.push({
       id: '56b6423a-2345-4e4a-885a-28ba505opvf5',
-      name: 'Sankar',
+      name: 'Sankar Lamichhane',
       age: 24,
     });
   }

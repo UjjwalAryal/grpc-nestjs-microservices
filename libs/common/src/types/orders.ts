@@ -18,7 +18,7 @@ export interface Orders {
 export interface CreateOrderDto {
   name: string;
   origin: string;
-  userId: number;
+  userId: string;
 }
 
 export interface Order {
