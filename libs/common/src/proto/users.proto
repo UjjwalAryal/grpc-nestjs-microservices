@@ -13,6 +13,11 @@ service UsersService {
   rpc QueryUsers (stream base.PaginationDto) returns (stream Users) {}
 }
 
+// rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);     // Server streaming RPC                
+// rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);   // Client streaming RPC                
+// rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);  // Bi-directional streaming RPC
+
+
 message UpdateUserDto {
   string id = 1;
   string name = 2;
