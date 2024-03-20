@@ -17,7 +17,10 @@ In this project, we have 3 services running,
 
 - Install `protoc` to your system. [guide](https://grpc.io/docs/protoc-installation/)
 
-- Run the 
+- Go to the directory `apps/api-gateway` and start the `api-gateway` using `npm run start:dev api-gateway`.
+
+- Similary, go to the directory `apps/grpc-service-users` and start the service using `npm run start:dev grpc-service-users`.
+
 ### Commands
 
 - To generate `.ts` files under `libs/common/src/types/` for each of the `.proto files` inside `libs/common/src/proto/`. Here, `ts-proto` package is used.
