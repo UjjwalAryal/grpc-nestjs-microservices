@@ -30,11 +30,11 @@ export class UsersService implements OnModuleInit {
   }
 
   findOne(id: string) {
-    return this.findOne(id);
+    return this.usersService.findOneUser({ id });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this.usersService.updateUser(updateUserDto);
+    return this.usersService.updateUser({ id, ...updateUserDto });
   }
 
   remove(id: string) {
